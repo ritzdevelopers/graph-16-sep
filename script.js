@@ -85,3 +85,69 @@ document.querySelectorAll("#mobile-menu a").forEach((link) => {
 });
 
 
+
+
+// gsap + scrolltrigger setup
+gsap.registerPlugin(ScrollTrigger);
+
+// reusable animation function
+function animateOnScroll(target, delay = 0) {
+  gsap.from(target, {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out",
+    delay: delay,
+    scrollTrigger: {
+      trigger: target,
+      start: "top 85%", // when enters viewport
+      toggleActions: "play none none reverse",
+    },
+  });
+}
+
+// Section 1
+animateOnScroll("section:nth-of-type(1) h1");
+animateOnScroll("section:nth-of-type(1) p", 0.2);
+animateOnScroll("section:nth-of-type(1) button", 0.4);
+animateOnScroll("section:nth-of-type(1) .absolute", 0.6);
+
+// Section 2
+animateOnScroll("section:nth-of-type(2) .top h2");
+animateOnScroll("section:nth-of-type(2) .top p", 0.2);
+animateOnScroll("section:nth-of-type(2) .btmCardsContainer .card1", 0.3);
+
+// Section 3
+animateOnScroll("section:nth-of-type(3) h2");
+animateOnScroll("section:nth-of-type(3) p", 0.2);
+animateOnScroll("section:nth-of-type(3) ol", 0.3);
+animateOnScroll("section:nth-of-type(3) button", 0.4);
+animateOnScroll("section:nth-of-type(3) img", 0.5);
+
+// Section 4
+animateOnScroll("section:nth-of-type(4) h2");
+animateOnScroll("section:nth-of-type(4) p", 0.2);
+animateOnScroll("section:nth-of-type(4) img", 0.3);
+animateOnScroll("section:nth-of-type(4) ul li", 0.4);
+
+// Section 5
+animateOnScroll("section:nth-of-type(5) h2");
+animateOnScroll("section:nth-of-type(5) p", 0.2);
+animateOnScroll("section:nth-of-type(5) .who-we-are-box", 0.3);
+
+
+// Section 6
+animateOnScroll("section:nth-of-type(6) h2");
+animateOnScroll("section:nth-of-type(6) p", 0.2);
+animateOnScroll("section:nth-of-type(6) .sliderContainer", 0.3);
+animateOnScroll("section:nth-of-type(6) .btns", 0.4);
+
+// Section 7
+animateOnScroll("section:nth-of-type(7) .form");
+animateOnScroll("section:nth-of-type(7) h2", 0.2);
+animateOnScroll("section:nth-of-type(7) input", 0.3);
+animateOnScroll("section:nth-of-type(7) textarea", 0.4);
+animateOnScroll("section:nth-of-type(7) button[type=submit]", 0.5);
+
+// Section 8
+animateOnScroll("section:nth-of-type(8) h2");
