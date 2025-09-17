@@ -1,0 +1,18 @@
+/* Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4037B200; /* transparent track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #161249; /* dark thumb */
+  border-radius: 10px;
+  border: 2px solid #4037B200; /* optional border for space */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4037B2; /* hover effect */
+}
