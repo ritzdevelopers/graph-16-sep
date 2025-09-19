@@ -38,7 +38,7 @@ window.addEventListener("scroll", () => {
       itm.classList.remove("text-black");
     });
     navBtn.classList.remove("border-[1px]", "border-black");
-        mobileMenuButton.classList.remove("text-black")
+    mobileMenuButton.classList.remove("text-black");
   } else {
     navbar.classList.remove("bg-transparent");
     navbar.classList.add("bg-white", "shadow-md");
@@ -46,7 +46,7 @@ window.addEventListener("scroll", () => {
       itm.classList.add("text-black");
     });
     navBtn.classList.add("border-[1px]", "border-black");
-    mobileMenuButton.classList.add("text-black")
+    mobileMenuButton.classList.add("text-black");
   }
 
   // ✅ Show / hide navbar on scroll
@@ -83,9 +83,6 @@ document.querySelectorAll("#mobile-menu a").forEach((link) => {
     closeIcon.classList.add("hidden");
   });
 });
-
-
-
 
 // gsap + scrolltrigger setup
 gsap.registerPlugin(ScrollTrigger);
@@ -135,7 +132,6 @@ animateOnScroll("section:nth-of-type(5) h2");
 animateOnScroll("section:nth-of-type(5) p", 0.2);
 animateOnScroll("section:nth-of-type(5) .who-we-are-box", 0.3);
 
-
 // Section 6
 animateOnScroll("section:nth-of-type(6) h2");
 animateOnScroll("section:nth-of-type(6) p", 0.2);
@@ -151,3 +147,44 @@ animateOnScroll("section:nth-of-type(7) button[type=submit]", 0.5);
 
 // Section 8
 animateOnScroll("section:nth-of-type(8) h2");
+
+// Slider Logic Is Written Here
+ document.addEventListener("DOMContentLoaded", function () {
+    const sliderCards = document.querySelectorAll(".sliderCard");
+    const leftBtn = document.querySelector(".lftBtn");
+    const rightBtn = document.querySelector(".rghtBtn");
+
+    let currentIndex = 0;
+
+    // setup all slides for fade animation
+    sliderCards.forEach((card, i) => {
+      card.style.position = "absolute";
+      card.style.top = "0";
+      card.style.left = "0";
+      card.style.width = "100%";
+      card.style.opacity = i === 0 ? "1" : "0";
+      card.style.transition = "opacity 0.6s ease-in-out";
+    });
+
+    function showSlide(index) {
+      if (index < 0) {
+        currentIndex = sliderCards.length - 1;
+      } else if (index >= sliderCards.length) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+
+      sliderCards.forEach((card, i) => {
+        card.style.opacity = i === currentIndex ? "1" : "0";
+      });
+    }
+
+    leftBtn.addEventListener("click", () => {
+      showSlide(currentIndex - 1);
+    });
+
+    rightBtn.addEventListener("click", () => {
+      showSlide(currentIndex + 1);
+    });
+  });

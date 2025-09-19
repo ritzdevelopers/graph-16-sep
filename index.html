@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -55,7 +55,6 @@
         }
       }
     </style>
-    
   </head>
   <body class="antialiased overflow-x-hidden">
     <!-- Navigation Bar -->
@@ -68,7 +67,7 @@
           </div>
 
           <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center gap-28">
+          <div class="hidden md:flex items-center gap-4 lg:gap-28">
             <a
               href="#home"
               class="text-[#FFFFFF] ach hover:text-gray-200 font-medium transition-colors duration-300"
@@ -201,7 +200,7 @@
 
           <!-- Video Box -->
           <div
-            class="absolute right-[11.5rem] bottom-[-170px] md:right-[-100px] md:top-[35%] md:bottom-auto md:translate-x-0 translate-x-1/2"
+            class="absolute right-[11.5rem] bottom-[-170px] md:right-[-100px] md:top-[35%] md:bottom-auto md:translate-x-0 translate-x-1/2 hidden lg:block"
           >
             <div
               class="w-[250px] sm:w-[300px] md:w-[325px] h-[180px] sm:h-[210px] md:h-[235.595px] flex justify-end items-end pr-4 pb-4"
@@ -529,7 +528,7 @@
 
       <!-- Section 6 -->
       <section
-        class="w-screen min-h-[60vh] lg:h-[748px] flex items-center relative px-4 sm:px-6 md:px-10"
+        class="w-screen min-h-[70vh] lg:h-[748px] flex items-center relative px-4 sm:px-6 md:px-10"
         style="
           background-image: url(./images/s6/s6BG.png);
           background-position: center;
@@ -539,7 +538,7 @@
       >
         <!-- Absolute Position Div -->
         <div
-          class="absolute hidden md:block right-4 sm:right-10 md:right-20 lg:right-32 top-4 sm:top-10 lg:top-20 w-[200px] sm:w-[300px] md:w-[400px] lg:w-[550.89px] h-auto"
+          class="absolute hidden lg:block right-4 sm:right-10 md:right-20 lg:right-32 top-4 sm:top-10 lg:top-16 w-[200px] sm:w-[300px] md:w-[400px] lg:w-[550.89px] h-auto"
         >
           <img src="/images/gflogo.png" class="w-full h-auto" alt="" />
         </div>
@@ -564,8 +563,9 @@
           <!-- Slider Section -->
           <div class="sliderWrapper flex flex-col gap-4">
             <div
-              class="sliderContainer w-full sm:w-[90%] md:w-[700px] lg:w-[914px] h-auto min-h-[180px] sm:min-h-[220px] lg:h-[252px] bg-white flex justify-center items-center"
+              class="sliderContainer w-full sm:w-[90%] md:w-[600px] lg:w-[914px] h-auto min-h-[180px] min-h-[220px] lg:h-[252px] bg-white flex justify-center items-center overflow-hidden"
             >
+              <!-- Slider Card 1 -->
               <div
                 class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
               >
@@ -583,7 +583,277 @@
                     class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
                   >
                     “Graph Infra gave us more than just a plot. They gave us
-                    confidence in our decision”
+                    confidence in our decision.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 2 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “The team was extremely professional and made the entire
+                    process smooth and stress-free.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 3 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “I felt secure about my investment because Graph Infra
+                    explained every detail clearly.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 4 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “They delivered on their promises, and the property was
+                    exactly what we were shown.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 5 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “Graph Infra’s transparency gave us peace of mind throughout
+                    the buying journey.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 6 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “We loved how approachable and friendly the team was during
+                    every step of the process.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 7 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “Thanks to Graph Infra, we now own a property that we are
+                    truly proud of.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 8 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “Their after-sales support was excellent. We never felt left
+                    alone after the purchase.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 9 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “Every promise was kept. Graph Infra is truly a name you can
+                    trust in real estate.”
+                  </h2>
+                </div>
+                <div class="flex w-full justify-end">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- Slider Card 10 -->
+              <div
+                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
+              >
+                <div class="flex justify-start w-full">
+                  <img
+                    src="./images/s7/sliderQ.png"
+                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
+                >
+                  <h2
+                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
+                  >
+                    “Choosing Graph Infra was one of the best decisions we made
+                    for our family’s future.”
                   </h2>
                 </div>
                 <div class="flex w-full justify-end">
@@ -602,7 +872,7 @@
             >
               <!-- Left Button -->
               <button
-                class="w-[45px] sm:w-[50px] lg:w-[58px] h-[45px] sm:h-[50px] lg:h-[58px] border border-white cursor-pointer flex justify-center items-center text-white hover:bg-white hover:text-black transition"
+                class="w-[45px] lftBtn sm:w-[50px] lg:w-[58px] h-[45px] sm:h-[50px] lg:h-[58px] border border-white cursor-pointer flex justify-center items-center text-white hover:bg-white hover:text-black transition"
               >
                 <p class="rotate-180">
                   <svg
@@ -624,7 +894,7 @@
 
               <!-- Right Button -->
               <button
-                class="w-[45px] sm:w-[50px] lg:w-[58px] h-[45px] sm:h-[50px] lg:h-[58px] border border-white cursor-pointer flex justify-center items-center bg-white text-black hover:border-black hover:bg-black hover:text-white transition"
+                class="w-[45px] rghtBtn sm:w-[50px] lg:w-[58px] h-[45px] sm:h-[50px] lg:h-[58px] border border-white cursor-pointer flex justify-center items-center bg-white text-black hover:border-black hover:bg-black hover:text-white transition"
               >
                 <p>
                   <svg
@@ -661,7 +931,7 @@
           "
         >
           <div
-            class="w-[90%] hidden md:block sm:w-[533px] min-h-[100px] lg:h-[147px] bg-white text-black flex items-center px-4 sm:pl-6"
+            class="w-[90%] hidden lg:block sm:w-[533px] min-h-[100px] lg:h-[147px] bg-white text-black flex items-center px-4 sm:pl-6"
           >
             <p
               class="text-[#2A2A2A] font-[500] text-[20px] sm:text-[28px] md:text-[34px] lg:text-[42px] leading-snug"
@@ -905,11 +1175,11 @@
     </footer>
 
     <!-- External JS Files -->
-<!-- GSAP Core -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- GSAP Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-<!-- GSAP ScrollTrigger Plugin -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- GSAP ScrollTrigger Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script src="script.js"></script>
   </body>
