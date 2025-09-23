@@ -149,42 +149,166 @@ animateOnScroll("section:nth-of-type(7) button[type=submit]", 0.5);
 animateOnScroll("section:nth-of-type(8) h2");
 
 // Slider Logic Is Written Here
- document.addEventListener("DOMContentLoaded", function () {
-    const sliderCards = document.querySelectorAll(".sliderCard");
-    const leftBtn = document.querySelector(".lftBtn");
-    const rightBtn = document.querySelector(".rghtBtn");
+document.addEventListener("DOMContentLoaded", function () {
+  const sliderCards = document.querySelectorAll(".sliderCard");
+  const leftBtn = document.querySelector(".lftBtn");
+  const rightBtn = document.querySelector(".rghtBtn");
 
-    let currentIndex = 0;
+  let currentIndex = 0;
 
-    // setup all slides for fade animation
-    sliderCards.forEach((card, i) => {
-      card.style.position = "absolute";
-      card.style.top = "0";
-      card.style.left = "0";
-      card.style.width = "100%";
-      card.style.opacity = i === 0 ? "1" : "0";
-      card.style.transition = "opacity 0.6s ease-in-out";
-    });
+sliderCards.forEach((card, i) => {
+  card.style.position = "absolute";
+  card.style.top = "0";
+  card.style.left = "0";
+  card.style.width = "100%";
+  card.style.transition = "transform 0.5s ease"; // Smooth sliding
+  card.style.transform = i === 0 ? "translateX(0)" : "translateX(100%)";
+});
 
-    function showSlide(index) {
-      if (index < 0) {
-        currentIndex = sliderCards.length - 1;
-      } else if (index >= sliderCards.length) {
-        currentIndex = 0;
-      } else {
-        currentIndex = index;
-      }
+function showSlide(index) {
+  if (index < 0) {
+    currentIndex = sliderCards.length - 1;
+  } else if (index >= sliderCards.length) {
+    currentIndex = 0;
+  } else {
+    currentIndex = index;
+  }
 
-      sliderCards.forEach((card, i) => {
-        card.style.opacity = i === currentIndex ? "1" : "0";
-      });
+  sliderCards.forEach((card, i) => {
+    if (i === currentIndex) {
+      card.style.transform = "translateX(0)"; // Current card visible
+    } else if (i < currentIndex) {
+      card.style.transform = "translateX(-100%)"; // Left side
+    } else {
+      card.style.transform = "translateX(100%)"; // Right side
     }
-
-    leftBtn.addEventListener("click", () => {
-      showSlide(currentIndex - 1);
-    });
-
-    rightBtn.addEventListener("click", () => {
-      showSlide(currentIndex + 1);
-    });
   });
+}
+
+// Button clicks
+leftBtn.addEventListener("click", () => {
+  showSlide(currentIndex - 1);
+});
+
+rightBtn.addEventListener("click", () => {
+  showSlide(currentIndex + 1);
+});
+});
+
+// Video Play Togle Handler
+const videoModal = document.getElementById("videoModal");
+const videoContainer = videoModal
+  ? videoModal.querySelector(".video-container")
+  : null;
+const videoPlayBtn = document.getElementById("vdoPlayer");
+const videoCloseBtn = document.getElementById("vdoCloseBtn");
+const videoFile = document.getElementById("videoFile");
+
+// Defensive checks
+if (!videoModal) console.warn("videoModal not found in DOM");
+if (!videoContainer)
+  console.warn(
+    "video-container not found in DOM — add class 'video-container' to the container"
+  );
+if (!videoFile) console.warn("videoFile not found in DOM");
+if (!videoPlayBtn) console.warn("vdoPlayer (play button) not found in DOM");
+if (!videoCloseBtn) console.warn("vdoCloseBtn (close button) not found in DOM");
+
+// Open Modal
+function openModal() {
+  if (!videoModal || !videoContainer) return;
+
+  // show container immediately (so layout exists)
+  videoModal.classList.remove("hidden");
+
+  // ensure any previous tweens are killed
+  gsap.killTweensOf([videoModal, videoContainer]);
+
+  // overlay fade-in
+  gsap.fromTo(
+    videoModal,
+    { opacity: 0 },
+    { opacity: 1, duration: 0.25, ease: "power1.out" }
+  );
+
+  // container zoom-in
+  gsap.fromTo(
+    videoContainer,
+    { scale: 0.8, y: 60, opacity: 0 },
+    { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+  );
+
+  // play video (catch in case of browser autoplay restrictions)
+  if (videoFile) {
+    videoFile.currentTime = 0;
+    videoFile.muted = false; // if you want sound on open; set true if required
+    videoFile.play().catch((err) => {
+      // autoplay might be blocked; keep controls so user can play
+      console.warn("video play blocked:", err);
+    });
+  }
+}
+
+// Close Modal
+function closeModal() {
+  if (!videoModal || !videoContainer) return;
+
+  // kill previous tweens
+  gsap.killTweensOf([videoModal, videoContainer]);
+
+  // container zoom-out
+  gsap.to(videoContainer, {
+    scale: 0.8,
+    y: 60,
+    opacity: 0,
+    duration: 0.45,
+    ease: "power3.in",
+  });
+
+  // overlay fade-out (slightly delayed so container animation is visible)
+  gsap.to(videoModal, {
+    opacity: 0,
+    duration: 0.28,
+    delay: 0.1,
+    ease: "power1.in",
+    onComplete: () => {
+      videoModal.classList.add("hidden");
+      // safe video stop
+      if (videoFile) {
+        try {
+          videoFile.pause();
+          videoFile.currentTime = 0;
+        } catch (e) {
+          /* ignore */
+        }
+      }
+    },
+  });
+}
+
+// Event listeners
+if (videoPlayBtn) videoPlayBtn.addEventListener("click", openModal);
+if (videoCloseBtn) videoCloseBtn.addEventListener("click", closeModal);
+
+// close on overlay click outside container
+videoModal &&
+  videoModal.addEventListener("click", (e) => {
+    if (!videoContainer) return;
+    if (!videoContainer.contains(e.target)) closeModal();
+  });
+
+// Esc key to close
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+// Initialize Lenis
+const lenis = new Lenis();
+
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);

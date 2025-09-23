@@ -57,6 +57,32 @@
     </style>
   </head>
   <body class="antialiased overflow-x-hidden">
+    <!-- Video Modal -->
+    <div
+      id="videoModal"
+      class="w-screen h-screen bg-black bg-opacity-90 flex justify-center items-center fixed top-0 left-0 z-[9999] hidden"
+    >
+      <!-- Video Container (safe class for GSAP) -->
+      <div
+        class="video-container w-[90%] md:w-[80%] lg:w-[60%] h-[70%] relative rounded-xl overflow-hidden shadow-2xl"
+      >
+        <!-- Close Button -->
+        <div
+          id="vdoCloseBtn"
+          class="absolute top-4 right-4 z-50 bg-white text-black cursor-pointer rounded-full h-10 w-10 flex justify-center items-center shadow-lg hover:scale-110 transition"
+        >
+          ✕
+        </div>
+
+        <video
+          id="videoFile"
+          src="./images/graphV1.mp4"
+          muted
+          controls
+          class="w-full h-full object-cover rounded-xl"
+        ></video>
+      </div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="fixed w-full z-50">
       <div class="max-w-[94%] mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +93,7 @@
           </div>
 
           <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center gap-4 lg:gap-28">
+          <div class="hidden md:flex items-center gap-4 lg:gap-[60px]">
             <a
               href="#home"
               class="text-[#FFFFFF] ach hover:text-gray-200 font-medium transition-colors duration-300"
@@ -96,7 +122,7 @@
           </div>
           <div class="hidden md:flex">
             <button class="w-[156px] achBtn h-[38px] bg-white text-black">
-              BOOK A SITE
+              BOOK A SITE VISIT
             </button>
           </div>
           <!-- Mobile menu button -->
@@ -212,7 +238,8 @@
               "
             >
               <div
-                class="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full bg-[#DFDFDF] flex justify-center items-center"
+                id="vdoPlayer"
+                class="w-12 h-12 sm:w-[50px] cursor-pointer hover:bg-gray-400 sm:h-[50px] rounded-full bg-[#DFDFDF] flex justify-center items-center"
               >
                 <img src="./images/s1/playIcn.png" alt="play icon" />
               </div>
@@ -255,11 +282,11 @@
         >
           <!-- Card 1 -->
           <div
-            class="card1 w-full sm:w-[331.8px] md:h-[328px] flex flex-col gap-4 text-center"
+            class="card1 w-full sm:w-[331.8px] md:h-[328px] flex flex-col gap-4 text-center overflow-hidden"
           >
             <img
               src="./images/s2/s2c1.png"
-              class="h-[200px] sm:h-[242px] w-full object-cover"
+              class="h-[200px] sm:h-[242px] transform hover:scale-105 transition duration-300 cursor-pointer w-full object-cover"
               alt="card1"
             />
             <p class="font-medium text-base sm:text-lg md:text-[20px]">
@@ -269,11 +296,11 @@
 
           <!-- Card 2 -->
           <div
-            class="card1 w-full sm:w-[521.53px] md:h-[465px] flex flex-col gap-4 text-center"
+            class="card1 w-full sm:w-[521.53px] md:h-[465px] flex flex-col gap-4 text-center overflow-hidden"
           >
             <img
               src="./images/s2/s2c2.png"
-              class="h-[250px] sm:h-[362px] w-full object-cover"
+              class="h-[250px] sm:h-[362px] cursor-pointer transform hover:scale-105 transition duration-300 w-full object-cover"
               alt="card2"
             />
             <p class="font-medium text-base sm:text-lg md:text-[20px]">
@@ -283,11 +310,11 @@
 
           <!-- Card 3 -->
           <div
-            class="card1 w-full sm:w-[331.8px] md:h-[328px] flex flex-col gap-4 text-center"
+            class="card1 w-full sm:w-[331.8px] md:h-[328px] flex flex-col gap-4 text-center overflow-hidden"
           >
             <img
               src="./images/s2/s2c3.png"
-              class="h-[200px] sm:h-[242px] w-full object-cover"
+              class="h-[200px] transform hover:scale-105 transition duration-300 cursor-pointer sm:h-[242px] w-full object-cover"
               alt="card3"
             />
             <p class="font-medium text-base sm:text-lg md:text-[20px]">
@@ -387,7 +414,7 @@
       >
         <!-- Left Side Div -->
         <div
-          class="absolute z-0 top-0 left-0 w-full md:w-[40%] h-[200px] sm:h-[250px] md:h-[809px]"
+          class="absolute z-0 top-0 left-0 w-full md:w-[43%] h-[200px] sm:h-[250px] md:h-[809px]"
           style="
             background-image: url(/images/s4/gs4i3.png);
             background-position: center;
@@ -398,7 +425,7 @@
 
         <!-- Right Side Div -->
         <div
-          class="absolute z-0 top-[200px] sm:top-[250px] md:top-0 right-0 w-full md:w-[60%] h-[200px] sm:h-[250px] md:h-[809px]"
+          class="absolute z-0 top-[200px] sm:top-[250px] md:top-0 right-0 w-full md:w-[57%] h-[200px] sm:h-[250px] md:h-[809px]"
           style="
             background-image: url('./images/s4/gs4i1.png');
             background-position: center;
@@ -685,185 +712,6 @@
                 </div>
               </div>
 
-              <!-- Slider Card 5 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “Graph Infra’s transparency gave us peace of mind throughout
-                    the buying journey.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <!-- Slider Card 6 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “We loved how approachable and friendly the team was during
-                    every step of the process.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <!-- Slider Card 7 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “Thanks to Graph Infra, we now own a property that we are
-                    truly proud of.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <!-- Slider Card 8 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “Their after-sales support was excellent. We never felt left
-                    alone after the purchase.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <!-- Slider Card 9 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “Every promise was kept. Graph Infra is truly a name you can
-                    trust in real estate.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <!-- Slider Card 10 -->
-              <div
-                class="sliderCard flex flex-col justify-center items-center w-[90%] h-auto p-4 gap-2"
-              >
-                <div class="flex justify-start w-full">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="text-center w-full sm:w-[90%] md:w-[600px] lg:w-[698px]"
-                >
-                  <h2
-                    class="font-[400] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
-                  >
-                    “Choosing Graph Infra was one of the best decisions we made
-                    for our family’s future.”
-                  </h2>
-                </div>
-                <div class="flex w-full justify-end">
-                  <img
-                    src="./images/s7/sliderQ.png"
-                    class="w-[40px] sm:w-[50px] lg:w-[62px] h-auto"
-                    alt=""
-                  />
-                </div>
-              </div>
             </div>
 
             <!-- Slider Buttons -->
@@ -931,7 +779,7 @@
           "
         >
           <div
-            class="w-[90%] hidden lg:block sm:w-[533px] min-h-[100px] lg:h-[147px] bg-white text-black flex items-center px-4 sm:pl-6"
+            class="w-[90%] hidden lg:flex items-center sm:w-[533px] min-h-[100px] lg:h-[147px] bg-white text-black flex px-4 sm:pl-6"
           >
             <p
               class="text-[#2A2A2A] font-[500] text-[20px] sm:text-[28px] md:text-[34px] lg:text-[42px] leading-snug"
@@ -943,7 +791,7 @@
 
         <!-- Right Side Div -->
         <div
-          class="flex justify-center items-center w-full lg:w-[calc(100vw-594px)] z-10 p-4 sm:p-6"
+          class="flex bg-white justify-center items-center w-full lg:w-[calc(100vw-594px)] z-10 p-4 sm:p-6"
         >
           <div
             class="form w-full max-w-[704px] bg-white shadow-lg lg:h-[706px] p-4 sm:p-6 flex justify-center items-center"
@@ -1180,6 +1028,8 @@
 
     <!-- GSAP ScrollTrigger Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
 
     <script src="script.js"></script>
   </body>
