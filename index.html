@@ -168,12 +168,12 @@
             >Projects</a
           >
           <a
-          href="#cummunity-sustainability"
+            href="#cummunity-sustainability"
             class="block px-3 py-2 text-[#000000] hover:text-gray-200 hover:bg-gray-50 rounded-md font-medium"
             >Community</a
           >
           <a
-          href="#cummunity-sustainability"
+            href="#cummunity-sustainability"
             class="block px-3 py-2 text-[#000000] hover:text-gray-200 hover:bg-gray-50 rounded-md font-medium"
             >Sustainablity</a
           >
@@ -253,10 +253,16 @@
             >
               <video
                 src="./images/real-estate-2.mp4"
-                class="w-full vdo h-full object-cover"
+                class="w-full vdo h-full hidden
+                 object-cover acVid"
                 muted
                 loop
               ></video>
+              <img
+                src="./images/s1/gs1video.png"
+                class="w-full h-full object-cover acImg"
+                alt=""
+              />
               <div
                 id="vdoPlayer"
                 class="w-12 h-12 sm:w-[50px] cursor-pointer hover:bg-gray-400 sm:h-[50px] rounded-full bg-[#DFDFDF] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center items-center"
@@ -480,7 +486,7 @@
               </p>
             </div>
             <button
-            onclick="window.location.href='#about'"
+              onclick="window.location.href='#about'"
               class="w-[140px] sm:w-[154px] h-[40px] sm:h-[46px] bg-white text-black text-sm md:text-base hover:bg-[#A26A2B] hover:text-white transition"
             >
               LEARN MORE
@@ -918,7 +924,9 @@
       id="siteVisitModal"
       class="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4 hidden"
     >
-      <div class="relative w-full max-w-[720px] bg-white rounded-xl overflow-hidden shadow-2xl">
+      <div
+        class="relative w-full max-w-[720px] bg-white rounded-xl overflow-hidden shadow-2xl"
+      >
         <button
           id="siteVisitClose"
           aria-label="Close"
@@ -927,14 +935,43 @@
           ✕
         </button>
         <div class="p-6 sm:p-8">
-          <h3 class="text-2xl sm:text-3xl font-semibold text-black mb-4">Book A Site Visit</h3>
-          <form id="siteVisitForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" name="name" placeholder="Name" class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B]" />
-            <input type="email" name="email" placeholder="Email" class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B]" />
-            <input type="text" name="phone" placeholder="Phone" class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B] sm:col-span-2" />
-            <textarea name="message" placeholder="Message" class="w-full min-h-[110px] border-b-2 border-gray-300 bg-[#FBFBFB] p-3 resize-none focus:outline-none focus:border-[#A26A2B] sm:col-span-2"></textarea>
+          <h3 class="text-2xl sm:text-3xl font-semibold text-black mb-4">
+            Book A Site Visit
+          </h3>
+          <form
+            id="siteVisitForm"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B]"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B]"
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone"
+              class="w-full h-[48px] border-b-2 border-gray-300 bg-[#FBFBFB] px-3 focus:outline-none focus:border-[#A26A2B] sm:col-span-2"
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              class="w-full min-h-[110px] border-b-2 border-gray-300 bg-[#FBFBFB] p-3 resize-none focus:outline-none focus:border-[#A26A2B] sm:col-span-2"
+            ></textarea>
             <div class="sm:col-span-2 mt-2 flex justify-end">
-              <button type="submit" class="w-[154px] h-[48px] bg-[#A26A2B] text-white font-medium hover:bg-[#8b5623]">Submit</button>
+              <button
+                type="submit"
+                class="w-[154px] h-[48px] bg-[#A26A2B] text-white font-medium hover:bg-[#8b5623]"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>

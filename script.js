@@ -220,7 +220,7 @@ function openModal() {
 
   // show container immediately (so layout exists)
   videoModal.classList.remove("hidden");
-  
+
   // ensure any previous tweens are killed
   gsap.killTweensOf([videoModal, videoContainer]);
 
@@ -316,6 +316,8 @@ requestAnimationFrame(raf);
 function heroVideoAnimation() {
   const img = document.querySelector("#vdoPlayer");
   const vdo = document.querySelector(".vdo");
+  const acVid = document.querySelector(".acVid");
+  const acImg = document.querySelector(".acImg");
   if (window.innerWidth > 1024) {
     gsap.to(".vdc", {
       width: "100vw",
@@ -332,12 +334,18 @@ function heroVideoAnimation() {
         scrub: true,
         // markers: true,
         onEnter: () => {
-          if (vdo) vdo.play(), (img.style.display = "none");
+          if (vdo)
+            vdo.play(),
+              (img.style.display = "none"),
+              (acVid.style.display = "block"),
+              (acImg.style.display = "none");
         },
         onLeaveBack: () => {
           if (vdo) {
             vdo.pause();
+            acVid.style.display = "none";
             img.style.display = "flex";
+            acImg.style.display = "block";
             vdo.currentTime = 0;
           }
         },
@@ -356,7 +364,7 @@ function heroVideoAnimation() {
         // markers: true,
       },
     });
-   
+
     gsap.to(".s1", {
       background: "white",
       scrollTrigger: {
@@ -366,16 +374,16 @@ function heroVideoAnimation() {
         scrub: true,
         onEnter: () => {
           gsap.to(".s1", {
-            position:'sitcky',
-            top:'0',
-            left:'0',
+            position: "sitcky",
+            top: "0",
+            left: "0",
             zIndex: "-9999",
           });
         },
         onLeaveBack: () => {
           gsap.to(".s1", {
-            position:'relative',
-          
+            position: "relative",
+
             zIndex: "9999",
           });
         },
@@ -410,10 +418,11 @@ heroVideoAnimation();
 
   formTriggers.forEach((btn) => btn.addEventListener("click", openFormModal));
   formClose && formClose.addEventListener("click", closeFormModal);
-  formModal && formModal.addEventListener("click", (e) => {
-    const container = formModal.querySelector(".rounded-xl");
-    if (container && !container.contains(e.target)) closeFormModal();
-  });
+  formModal &&
+    formModal.addEventListener("click", (e) => {
+      const container = formModal.querySelector(".rounded-xl");
+      if (container && !container.contains(e.target)) closeFormModal();
+    });
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeFormModal();
   });
