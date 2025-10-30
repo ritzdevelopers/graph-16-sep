@@ -16,3 +16,35 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #4037B2; /* hover effect */
 }
+
+/* Fancy button hover aligned with theme */
+.btn-fancy {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 200ms ease, box-shadow 200ms ease, color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+.btn-fancy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(162,106,43,0) 0%, rgba(162,106,43,0.35) 35%, rgba(214,184,106,0.45) 50%, rgba(162,106,43,0.35) 65%, rgba(162,106,43,0) 100%);
+  transform: translateX(-120%);
+  transition: transform 450ms ease;
+  pointer-events: none;
+}
+.btn-fancy:hover::before {
+  transform: translateX(120%);
+}
+.btn-fancy:hover {
+  box-shadow: 0 8px 24px rgba(162,106,43,0.25);
+  transform: translateY(-1px);
+}
+.btn-fancy:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(162,106,43,0.2);
+}
+.btn-fancy:focus-visible {
+  outline: 2px solid #A26A2B;
+  outline-offset: 2px;
+}
