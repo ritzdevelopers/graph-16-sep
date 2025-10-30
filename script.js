@@ -384,3 +384,37 @@ function heroVideoAnimation() {
   }
 }
 heroVideoAnimation();
+
+// Site-Visit Modal Form handlers
+(function initSiteVisitModal() {
+  const formModal = document.getElementById("siteVisitModal");
+  const formClose = document.getElementById("siteVisitClose");
+  const formTriggers = document.querySelectorAll('[data-open-form="true"]');
+  const htmlEl = document.documentElement;
+  const bodyEl = document.body;
+
+  function openFormModal(e) {
+    if (e) e.preventDefault();
+    if (!formModal) return;
+    formModal.classList.remove("hidden");
+    htmlEl.style.overflow = "hidden";
+    bodyEl.style.overflow = "hidden";
+  }
+
+  function closeFormModal() {
+    if (!formModal) return;
+    formModal.classList.add("hidden");
+    htmlEl.style.overflow = "";
+    bodyEl.style.overflow = "";
+  }
+
+  formTriggers.forEach((btn) => btn.addEventListener("click", openFormModal));
+  formClose && formClose.addEventListener("click", closeFormModal);
+  formModal && formModal.addEventListener("click", (e) => {
+    const container = formModal.querySelector(".rounded-xl");
+    if (container && !container.contains(e.target)) closeFormModal();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeFormModal();
+  });
+})();
