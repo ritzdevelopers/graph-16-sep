@@ -220,10 +220,7 @@ function openModal() {
 
   // show container immediately (so layout exists)
   videoModal.classList.remove("hidden");
-  document.documentElement.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-  try { if (typeof lenis !== "undefined" && lenis) lenis.stop(); } catch (_) {}
-
+  
   // ensure any previous tweens are killed
   gsap.killTweensOf([videoModal, videoContainer]);
 
@@ -255,9 +252,7 @@ function openModal() {
 // Close Modal
 function closeModal() {
   if (!videoModal || !videoContainer) return;
-  document.documentElement.style.overflow = "";
-  document.body.style.overflow = "";
-  try { if (typeof lenis !== "undefined" && lenis) lenis.start(); } catch (_) {}
+
   // kill previous tweens
   gsap.killTweensOf([videoModal, videoContainer]);
 
@@ -361,7 +356,7 @@ function heroVideoAnimation() {
         // markers: true,
       },
     });
-
+   
     gsap.to(".s1", {
       background: "white",
       scrollTrigger: {
@@ -371,16 +366,16 @@ function heroVideoAnimation() {
         scrub: true,
         onEnter: () => {
           gsap.to(".s1", {
-            position: "sitcky",
-            top: "0",
-            left: "0",
+            position:'sitcky',
+            top:'0',
+            left:'0',
             zIndex: "-9999",
           });
         },
         onLeaveBack: () => {
           gsap.to(".s1", {
-            position: "relative",
-
+            position:'relative',
+          
             zIndex: "9999",
           });
         },
