@@ -156,43 +156,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentIndex = 0;
 
-sliderCards.forEach((card, i) => {
-  card.style.position = "absolute";
-  card.style.top = "0";
-  card.style.left = "0";
-  card.style.width = "100%";
-  card.style.transition = "transform 0.5s ease"; // Smooth sliding
-  card.style.transform = i === 0 ? "translateX(0)" : "translateX(100%)";
-});
+  sliderCards.forEach((card, i) => {
+    card.style.position = "absolute";
+    card.style.top = "0";
+    card.style.left = "0";
+    card.style.width = "100%";
+    card.style.transition = "transform 0.5s ease"; // Smooth sliding
+    card.style.transform = i === 0 ? "translateX(0)" : "translateX(100%)";
+  });
 
-function showSlide(index) {
-  if (index < 0) {
-    currentIndex = sliderCards.length - 1;
-  } else if (index >= sliderCards.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
+  function showSlide(index) {
+    if (index < 0) {
+      currentIndex = sliderCards.length - 1;
+    } else if (index >= sliderCards.length) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+
+    sliderCards.forEach((card, i) => {
+      if (i === currentIndex) {
+        card.style.transform = "translateX(0)"; // Current card visible
+      } else if (i < currentIndex) {
+        card.style.transform = "translateX(-100%)"; // Left side
+      } else {
+        card.style.transform = "translateX(100%)"; // Right side
+      }
+    });
   }
 
-  sliderCards.forEach((card, i) => {
-    if (i === currentIndex) {
-      card.style.transform = "translateX(0)"; // Current card visible
-    } else if (i < currentIndex) {
-      card.style.transform = "translateX(-100%)"; // Left side
-    } else {
-      card.style.transform = "translateX(100%)"; // Right side
-    }
+  // Button clicks
+  leftBtn.addEventListener("click", () => {
+    showSlide(currentIndex - 1);
   });
-}
 
-// Button clicks
-leftBtn.addEventListener("click", () => {
-  showSlide(currentIndex - 1);
-});
-
-rightBtn.addEventListener("click", () => {
-  showSlide(currentIndex + 1);
-});
+  rightBtn.addEventListener("click", () => {
+    showSlide(currentIndex + 1);
+  });
 });
 
 // Video Play Togle Handler
@@ -220,6 +220,9 @@ function openModal() {
 
   // show container immediately (so layout exists)
   videoModal.classList.remove("hidden");
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+  try { if (typeof lenis !== "undefined" && lenis) lenis.stop(); } catch (_) {}
 
   // ensure any previous tweens are killed
   gsap.killTweensOf([videoModal, videoContainer]);
@@ -252,7 +255,9 @@ function openModal() {
 // Close Modal
 function closeModal() {
   if (!videoModal || !videoContainer) return;
-
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+  try { if (typeof lenis !== "undefined" && lenis) lenis.start(); } catch (_) {}
   // kill previous tweens
   gsap.killTweensOf([videoModal, videoContainer]);
 
@@ -312,3 +317,75 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
+function heroVideoAnimation() {
+  const img = document.querySelector("#vdoPlayer");
+  const vdo = document.querySelector(".vdo");
+  if (window.innerWidth > 1024) {
+    gsap.to(".vdc", {
+      width: "100vw",
+      height: "130vh",
+      bottom: "0",
+      left: "0",
+      position: "absolute",
+      zIndex: "9999",
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".vdc",
+        start: "top 35%",
+        end: "bottom 0%",
+        scrub: true,
+        // markers: true,
+        onEnter: () => {
+          if (vdo) vdo.play(), (img.style.display = "none");
+        },
+        onLeaveBack: () => {
+          if (vdo) {
+            vdo.pause();
+            img.style.display = "flex";
+            vdo.currentTime = 0;
+          }
+        },
+      },
+    });
+
+    gsap.to(".s1", {
+      height: "320vh",
+      ease: "power3.out",
+
+      scrollTrigger: {
+        trigger: "main",
+        start: "top 0%",
+        end: "bottom 0%",
+        scrub: true,
+        // markers: true,
+      },
+    });
+
+    gsap.to(".s1", {
+      background: "white",
+      scrollTrigger: {
+        trigger: ".vdc",
+        start: "top -10%",
+        end: "bottom 0%",
+        scrub: true,
+        onEnter: () => {
+          gsap.to(".s1", {
+            position: "sitcky",
+            top: "0",
+            left: "0",
+            zIndex: "-9999",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(".s1", {
+            position: "relative",
+
+            zIndex: "9999",
+          });
+        },
+      },
+    });
+  }
+}
+heroVideoAnimation();

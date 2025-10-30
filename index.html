@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -62,7 +62,6 @@
       id="videoModal"
       class="w-screen h-screen bg-black bg-opacity-90 flex justify-center items-center fixed top-0 left-0 z-[9999] hidden"
     >
-      <!-- Video Container (safe class for GSAP) -->
       <div
         class="video-container w-[90%] md:w-[80%] lg:w-[60%] h-[70%] relative rounded-xl overflow-hidden shadow-2xl"
       >
@@ -76,7 +75,7 @@
 
         <video
           id="videoFile"
-          src="./images/graphV1.mp4"
+          src="./images/real-estate-2.mp4"
           muted
           controls
           class="w-full h-full object-cover rounded-xl"
@@ -201,10 +200,10 @@
       </div>
     </nav>
 
-    <main>
+    <main class="relative">
       <!-- Section 1 Is Starting From Here -->
       <section
-        class="w-screen min-h-[110vh] flex items-center lg:pl-[5rem] px-4 md:px-8"
+        class="s1 w-screen min-h-[110vh] flex items-center lg:pl-[5rem] px-4 md:px-8 relative"
         style="
           background-image: url(./images/gbg1.png);
           background-position: center;
@@ -213,7 +212,7 @@
         "
       >
         <div
-          class="relative w-full md:w-[872px] h-auto md:h-[491px] p-6 md:p-10"
+          class="w-full md:w-[872px] h-auto md:h-[491px] p-6 md:p-10"
           style="
             background-image: url(./images/s1/gs1.png);
             background-size: cover;
@@ -247,20 +246,20 @@
 
           <!-- Video Box -->
           <div
-            class="absolute right-[11.5rem] bottom-[-170px] md:right-[-100px] md:top-[35%] md:bottom-auto md:translate-x-0 translate-x-1/2 hidden lg:block"
+            class="absolute right-[11.5rem] bottom-[-170px] md:right-[450px] md:top-[44%] md:bottom-auto md:translate-x-0 translate-x-1/2 hidden lg:block w-[250px] sm:w-[300px] md:w-[325px] h-[180px] sm:h-[210px] md:h-[235.595px] vdc"
           >
             <div
-              class="w-[250px] sm:w-[300px] md:w-[325px] h-[180px] sm:h-[210px] md:h-[235.595px] flex justify-end items-end pr-4 pb-4"
-              style="
-                background-image: url(./images/s1/gs1video.png);
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;
-              "
+              class="w-full h-full relative flex justify-center items-center pr-4 pb-4"
             >
+              <video
+                src="./images/real-estate-2.mp4"
+                class="w-full vdo h-full object-cover"
+                muted
+                loop
+              ></video>
               <div
                 id="vdoPlayer"
-                class="w-12 h-12 sm:w-[50px] cursor-pointer hover:bg-gray-400 sm:h-[50px] rounded-full bg-[#DFDFDF] flex justify-center items-center"
+                class="w-12 h-12 sm:w-[50px] cursor-pointer hover:bg-gray-400 sm:h-[50px] rounded-full bg-[#DFDFDF] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex justify-center items-center"
               >
                 <img src="./images/s1/playIcn.png" alt="play icon" />
               </div>
