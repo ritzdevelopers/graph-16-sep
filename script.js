@@ -1,24 +1,77 @@
 // Mobile menu toggle
 const mobileMenuButton = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
+const menuIcon = document.getElementById("menu-icon");
+const closeIcon = document.getElementById("close-icon");
 const navLinks = document.querySelectorAll(".ach");
 const navBtn = document.querySelector(".achBtn");
 
-mobileMenuButton.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-  gsap.fromTo(
-    mobileMenu,
-    { opacity: 0, y: -20 },
-    { opacity: 1, y: 0, duration: 0.3 }
-  );
-});
+// Check if elements exist before adding event listeners
+if (mobileMenuButton && mobileMenu) {
+  mobileMenuButton.addEventListener("click", () => {
+    const isHidden = mobileMenu.classList.contains("hidden");
+    
+    // Toggle menu icons
+    if (menuIcon && closeIcon) {
+      menuIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    }
+    
+    if (isHidden) {
+      // Show menu
+      mobileMenu.classList.remove("hidden");
+      // Animate in with GSAP if available
+      if (typeof gsap !== "undefined") {
+        gsap.fromTo(
+          mobileMenu,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.3 }
+        );
+      } else {
+        // Fallback if GSAP not loaded yet
+        mobileMenu.style.opacity = "0";
+        mobileMenu.style.transform = "translateY(-20px)";
+        setTimeout(() => {
+          mobileMenu.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+          mobileMenu.style.opacity = "1";
+          mobileMenu.style.transform = "translateY(0)";
+        }, 10);
+      }
+    } else {
+      // Hide menu
+      if (typeof gsap !== "undefined") {
+        gsap.to(mobileMenu, {
+          opacity: 0,
+          y: -20,
+          duration: 0.3,
+          onComplete: () => {
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      } else {
+        mobileMenu.style.opacity = "0";
+        mobileMenu.style.transform = "translateY(-20px)";
+        setTimeout(() => {
+          mobileMenu.classList.add("hidden");
+        }, 300);
+      }
+    }
+  });
+}
 
 // Close mobile menu when clicking on links
-document.querySelectorAll("#mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.add("hidden");
+if (mobileMenu) {
+  document.querySelectorAll("#mobile-menu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      // Reset icons
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+    });
   });
-});
+}
 
 // GSAP Animations with ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -67,22 +120,7 @@ window.addEventListener("scroll", () => {
 
   lastScroll = currentScroll;
 });
-// Menu ↔ Close icon toggle
-const menuIcon = document.getElementById("menu-icon");
-const closeIcon = document.getElementById("close-icon");
 
-mobileMenuButton.addEventListener("click", () => {
-  menuIcon.classList.toggle("hidden");
-  closeIcon.classList.toggle("hidden");
-});
-
-// Jab mobile nav link click ho → phir se menu icon show ho
-document.querySelectorAll("#mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    menuIcon.classList.remove("hidden");
-    closeIcon.classList.add("hidden");
-  });
-});
 
 // gsap + scrolltrigger setup
 gsap.registerPlugin(ScrollTrigger);
@@ -318,6 +356,7 @@ function heroVideoAnimation() {
   const vdo = document.querySelector(".vdo");
   const acVid = document.querySelector(".acVid");
   const acImg = document.querySelector(".acImg");
+  // Only apply hero video animation on desktop (larger than 1024px)
   if (window.innerWidth > 1024) {
     gsap.to(".vdc", {
       width: "100vw",
@@ -392,6 +431,29 @@ function heroVideoAnimation() {
   }
 }
 heroVideoAnimation();
+
+// Re-initialize video animation on window resize (only for desktop)
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Re-run animation check on resize to handle orientation changes
+    if (window.innerWidth <= 1024) {
+      // Reset video container styles on tablet/mobile
+      const vdc = document.querySelector(".vdc");
+      if (vdc) {
+        vdc.style.width = "";
+        vdc.style.height = "";
+        vdc.style.position = "";
+        vdc.style.bottom = "";
+        vdc.style.left = "";
+        vdc.style.zIndex = "";
+      }
+    } else {
+      heroVideoAnimation();
+    }
+  }, 250);
+});
 
 // Site-Visit Modal Form handlers
 (function initSiteVisitModal() {
