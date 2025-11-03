@@ -120,8 +120,6 @@ window.addEventListener("scroll", () => {
 
   lastScroll = currentScroll;
 });
-
-
 // gsap + scrolltrigger setup
 gsap.registerPlugin(ScrollTrigger);
 
@@ -140,7 +138,6 @@ function animateOnScroll(target, delay = 0) {
     },
   });
 }
-
 // Section 1
 animateOnScroll("section:nth-of-type(1) h1");
 animateOnScroll("section:nth-of-type(1) p", 0.2);
@@ -357,7 +354,7 @@ function heroVideoAnimation() {
   const acVid = document.querySelector(".acVid");
   const acImg = document.querySelector(".acImg");
   // Only apply hero video animation on desktop (larger than 1024px)
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth > 1440) {
     gsap.to(".vdc", {
       width: "100vw",
       height: "130vh",
