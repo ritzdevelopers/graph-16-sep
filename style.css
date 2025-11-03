@@ -66,6 +66,7 @@
   nav img {
     max-width: 120px;
     height: auto;
+    /* background: #6c63e9; */
   }
 }
 
@@ -769,3 +770,9 @@ body {
     display: none !important;
   }
 }
+@media (max-width: 600px) {
+
+  footer {
+    background-position-x: -600px !important;
+  }
+ }
