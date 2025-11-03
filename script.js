@@ -80,31 +80,105 @@ gsap.registerPlugin(ScrollTrigger);
 let lastScroll = 0;
 const navbar = document.querySelector("nav");
 
+// Initialize navbar state on page load
+if (navbar && window.scrollY === 0) {
+  navbar.classList.remove("bg-white", "shadow-md", "scroll-down");
+  navbar.classList.add("bg-transparent");
+  gsap.set(navbar, { y: 0 });
+  navbar.style.transform = "translateY(0px)";
+}
+
+// Also check on initial scroll position
+window.addEventListener("load", () => {
+  if (navbar && window.scrollY === 0) {
+    navbar.classList.remove("bg-white", "shadow-md", "scroll-down");
+    navbar.classList.add("bg-transparent");
+    gsap.set(navbar, { y: 0 });
+    navbar.style.transform = "translateY(0px)";
+    navbar.style.opacity = "1";
+    navbar.style.visibility = "visible";
+  }
+});
+
+// Continuous check to ensure navbar is visible at top - only when at top
+let navbarCheckInterval = null;
+function startNavbarTopCheck() {
+  if (navbarCheckInterval) return; // Already running
+  
+  navbarCheckInterval = setInterval(() => {
+    if (navbar && (window.scrollY === 0 || window.scrollY < 5)) {
+      // Force navbar to be visible at top
+      gsap.killTweensOf(navbar);
+      gsap.set(navbar, { y: 0, zIndex: 99999 });
+      navbar.style.cssText += "transform: translateY(0px) !important; opacity: 1 !important; visibility: visible !important; display: block !important;";
+      navbar.classList.remove("scroll-down", "scroll-up");
+    }
+  }, 100); // Check every 100ms when at top
+}
+
+function stopNavbarTopCheck() {
+  if (navbarCheckInterval) {
+    clearInterval(navbarCheckInterval);
+    navbarCheckInterval = null;
+  }
+}
+
+// Additional safeguard: Check navbar visibility at top
+function ensureNavbarVisibleAtTop() {
+  if (window.scrollY === 0 && navbar) {
+    gsap.killTweensOf(navbar);
+    gsap.set(navbar, { y: 0 });
+    navbar.classList.remove("scroll-down", "scroll-up");
+  }
+}
+
 window.addEventListener("scroll", () => {
   const currentScroll = window.scrollY;
 
-  // ✅ Background change logic
-  if (currentScroll === 0) {
+  // ✅ Always show navbar at the top (scroll position 0) - HIGHEST PRIORITY
+  if (currentScroll === 0 || currentScroll < 5) {
+    // Start continuous check to keep navbar visible
+    startNavbarTopCheck();
+    
+    // Kill ALL GSAP animations on navbar immediately
+    gsap.killTweensOf(navbar);
+    
+    // Remove any scroll classes
+    navbar.classList.remove("scroll-down", "scroll-up");
+    
+    // Set navbar position immediately with highest priority z-index
+    gsap.set(navbar, { y: 0, zIndex: 99999 });
+    navbar.style.cssText += "transform: translateY(0px) !important; opacity: 1 !important; visibility: visible !important; display: block !important; position: fixed !important;";
+    
+    // Background styling for top
     navbar.classList.remove("bg-white", "shadow-md");
     navbar.classList.add("bg-transparent");
+    
     navLinks.forEach((itm) => {
       itm.classList.remove("text-black");
     });
-    navBtn.classList.remove("border-[1px]", "border-black");
-    mobileMenuButton.classList.remove("text-black");
+    if (navBtn) navBtn.classList.remove("border-[1px]", "border-black");
+    if (mobileMenuButton) mobileMenuButton.classList.remove("text-black");
+    
+    lastScroll = currentScroll;
+    return; // Exit early - don't process any other scroll logic
   } else {
-    navbar.classList.remove("bg-transparent");
-    navbar.classList.add("bg-white", "shadow-md");
-    navLinks.forEach((itm) => {
-      itm.classList.add("text-black");
-    });
-    navBtn.classList.add("border-[1px]", "border-black");
-    mobileMenuButton.classList.add("text-black");
+    // Stop continuous check when not at top
+    stopNavbarTopCheck();
   }
 
-  // ✅ Show / hide navbar on scroll
-  if (currentScroll > lastScroll && !navbar.classList.contains("scroll-down")) {
-    // Scrolling down
+  // ✅ Background change logic when not at top
+  navbar.classList.remove("bg-transparent");
+  navbar.classList.add("bg-white", "shadow-md");
+  navLinks.forEach((itm) => {
+    itm.classList.add("text-black");
+  });
+  if (navBtn) navBtn.classList.add("border-[1px]", "border-black");
+  if (mobileMenuButton) mobileMenuButton.classList.add("text-black");
+
+  // ✅ Show / hide navbar on scroll (only when scrolled down from top)
+  if (currentScroll > lastScroll && currentScroll > 50 && !navbar.classList.contains("scroll-down")) {
+    // Scrolling down - hide navbar
     navbar.classList.remove("scroll-up");
     navbar.classList.add("scroll-down");
     gsap.to(navbar, { y: -100, duration: 0.3 });
@@ -112,7 +186,7 @@ window.addEventListener("scroll", () => {
     currentScroll < lastScroll &&
     navbar.classList.contains("scroll-down")
   ) {
-    // Scrolling up
+    // Scrolling up - show navbar
     navbar.classList.remove("scroll-down");
     navbar.classList.add("scroll-up");
     gsap.to(navbar, { y: 0, duration: 0.3 });

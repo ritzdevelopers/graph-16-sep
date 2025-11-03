@@ -61,9 +61,7 @@
 
 /* Tablet and Mobile Navigation Improvements */
 @media (max-width: 1023px) {
-  nav {
-    padding: 0 16px;
-  }
+
 
   nav img {
     max-width: 120px;
@@ -119,6 +117,7 @@ nav {
   .s1 {
     min-height: 100vh !important;
     padding: 80px 20px 40px !important;
+    overflow: visible !important;
   }
 
   .s1 > div {
@@ -155,6 +154,11 @@ nav {
 }
 
 @media (max-width: 767px) {
+  .s1 {
+    overflow: visible !important;
+    padding-bottom: 80px !important;
+  }
+
   .s1 h1 {
     font-size: 24px !important;
   }
@@ -615,5 +619,153 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+}
+
+/* Ensure Section 1 button is visible */
+.s1 button[data-open-form="true"].absolute {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+
+@media (min-width: 1280px) {
+  .s1 button[data-open-form="true"].absolute.xl\:hidden {
+    display: none !important;
+  }
+}
+
+/* Mobile/Tablet Hero Content Styling */
+.mobile-hero-content {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mobile-hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mobile-hero-content > div:first-of-type {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mobile-hero-content > div:last-of-type {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text readability improvements */
+.mobile-hero-content h1 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-hero-content p {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Button enhancements */
+.mobile-hero-content button {
+  transition: all 0.3s ease;
+  /* border-radius: 8px; */
+}
+
+.mobile-hero-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(162, 106, 43, 0.3);
+}
+
+/* Responsive adjustments for mobile hero content */
+@media (max-width: 640px) {
+  .mobile-hero-content {
+    min-height: 70vh !important;
+    padding: 40px 20px !important;
+  }
+  
+  .mobile-hero-content h1 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+  }
+  
+  .mobile-hero-content p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .mobile-hero-content button {
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .mobile-hero-content {
+    min-height: 75vh !important;
+    padding: 50px 24px !important;
+  }
+  
+  .mobile-hero-content h1 {
+    font-size: 36px !important;
+  }
+  
+  .mobile-hero-content p {
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mobile-hero-content {
+    min-height: 85vh !important;
+    padding: 60px 32px !important;
+  }
+  
+  .mobile-hero-content h1 {
+    font-size: 44px !important;
+  }
+  
+  .mobile-hero-content p {
+    font-size: 18px !important;
+  }
+  
+  .mobile-hero-content button {
+    min-width: 200px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .mobile-hero-content {
+    min-height: 90vh !important;
+    padding: 80px 40px !important;
+  }
+  
+  .mobile-hero-content h1 {
+    font-size: 52px !important;
+  }
+  
+  .mobile-hero-content p {
+    font-size: 18px !important;
+  }
+}
+
+/* Ensure it's hidden on XL screens and above */
+@media (min-width: 1280px) {
+  .mobile-hero-content {
+    display: none !important;
   }
 }
