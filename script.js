@@ -88,6 +88,7 @@ if (navbar && window.scrollY === 0) {
   navbar.style.transform = "translateY(0px)";
 }
 
+const gfLogo = document.getElementById("gfLogo");
 // Also check on initial scroll position
 window.addEventListener("load", () => {
   if (navbar && window.scrollY === 0) {
@@ -97,6 +98,7 @@ window.addEventListener("load", () => {
     navbar.style.transform = "translateY(0px)";
     navbar.style.opacity = "1";
     navbar.style.visibility = "visible";
+    gfLogo.src = "./images/130_58_wht.png";
   }
 });
 
@@ -112,6 +114,7 @@ function startNavbarTopCheck() {
       gsap.set(navbar, { y: 0, zIndex: 99999 });
       navbar.style.cssText += "transform: translateY(0px) !important; opacity: 1 !important; visibility: visible !important; display: block !important;";
       navbar.classList.remove("scroll-down", "scroll-up");
+      gfLogo.src = "./images/130_58_wht.png";
     }
   }, 100); // Check every 100ms when at top
 }
@@ -129,6 +132,7 @@ function ensureNavbarVisibleAtTop() {
     gsap.killTweensOf(navbar);
     gsap.set(navbar, { y: 0 });
     navbar.classList.remove("scroll-down", "scroll-up");
+    gfLogo.src = "./images/130_58_wht.png";
   }
 }
 
@@ -181,6 +185,7 @@ window.addEventListener("scroll", () => {
     // Scrolling down - hide navbar
     navbar.classList.remove("scroll-up");
     navbar.classList.add("scroll-down");
+    gfLogo.src = "./images/130_58_blu.png";
     gsap.to(navbar, { y: -100, duration: 0.3 });
   } else if (
     currentScroll < lastScroll &&
@@ -189,6 +194,7 @@ window.addEventListener("scroll", () => {
     // Scrolling up - show navbar
     navbar.classList.remove("scroll-down");
     navbar.classList.add("scroll-up");
+    gfLogo.src = "./images/130_58_blu.png";
     gsap.to(navbar, { y: 0, duration: 0.3 });
   }
 
