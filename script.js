@@ -488,10 +488,11 @@ function heroVideoAnimation() {
         start: "top -10%",
         end: "bottom 0%",
         scrub: true,
+        markers: true,
         onEnter: () => {
           gsap.to(".s1", {
             position: "sitcky",
-            top: "0",
+            top: "10%",
             left: "0",
             zIndex: "-9999",
           });
@@ -499,8 +500,8 @@ function heroVideoAnimation() {
         onLeaveBack: () => {
           gsap.to(".s1", {
             position: "relative",
-
             zIndex: "9999",
+            duration: 0.3,
           });
         },
       },
