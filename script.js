@@ -488,7 +488,7 @@ function heroVideoAnimation() {
         start: "top -10%",
         end: "bottom 0%",
         scrub: true,
-        markers: true,
+        // markers: true,
         onEnter: () => {
           gsap.to(".s1", {
             position: "sitcky",

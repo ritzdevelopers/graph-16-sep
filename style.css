@@ -116,8 +116,8 @@ nav {
 /* Section 1 - Hero Section Responsive */
 @media (max-width: 1023px) {
   .s1 {
-    min-height: 100vh !important;
-    padding: 80px 20px 40px !important;
+    /* min-height: 100vh !important;
+    padding: 80px 20px 40px !important; */
     overflow: visible !important;
   }
 
@@ -157,7 +157,7 @@ nav {
 @media (max-width: 767px) {
   .s1 {
     overflow: visible !important;
-    padding-bottom: 80px !important;
+    /* padding-bottom: 80px !important; */
   }
 
   .s1 h1 {
